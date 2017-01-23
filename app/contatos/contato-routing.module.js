@@ -17,6 +17,10 @@ var contatoRoutes = [
     {
         path: 'contato/save',
         component: contato_detalhe_component_1.ContatoDetalheComponent
+    },
+    {
+        path: 'contato/save/:id',
+        component: contato_detalhe_component_1.ContatoDetalheComponent
     }
 ];
 var ContatoRoutingModule = (function () {
@@ -28,6 +32,9 @@ ContatoRoutingModule = __decorate([
     core_1.NgModule({
         imports: [
             router_1.RouterModule.forChild(contatoRoutes)
+        ],
+        exports: [
+            router_1.RouterModule
         ]
     })
 ], ContatoRoutingModule);
