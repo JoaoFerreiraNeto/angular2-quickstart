@@ -2,27 +2,40 @@
 
     <h2>Salvar Contato</h2>
     
-    <form>
+    <form #contatoForm="ngForm">
 
         <div class="form-group">
             <label for="nome">Nome</label>
-            <input type="text" class="form-control" placeholder="Digite o nome...">
+            <input type="text" class="form-control" placeholder="Digite o nome..." 
+            required
+            name="nome" 
+            [(ngModel)]="contato.nome"
+            #spy>
+            <div class="alert alert-info"> {{ spy.className }} </div>
         </div>
 
         <div class="form-group">
             <label for="email">Email</label>
-            <input type="text" class="form-control" placeholder="Digite o email...">
-        </div>
+            <input type="text" class="form-control" placeholder="Digite o email..."
+            required
+            name="email" 
+            [(ngModel)]="contato.email">
+            </div>
 
         <div class="form-group">
             <label for="telefone">Telfone</label>
-            <input type="text" class="form-control" placeholder="Digite o telefone...">
+            <input type="text" class="form-control" placeholder="Digite o telefone..."
+            required
+            name="telefone" 
+            [(ngModel)]="contato.telefone">
         </div>
 
-        <button type="submit" class="btn btn-success">Salvar</button>
+        <button type="submit" class="btn btn-success" [disabled]="!contatoForm.form.valid">Salvar</button>
         <a class="btn btn-secondary" routerLink="/">Voltar</a>
 
     </form>
+
+    <button (click)="teste()" class="btn btn-warning">Log</button>
 
 
 </div>
