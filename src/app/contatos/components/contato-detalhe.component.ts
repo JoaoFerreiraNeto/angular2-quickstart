@@ -2,14 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { Location } from '@angular/common';
 
-import { Contato } from './contato.model';
-import { ContatoService } from './contato.service';
+import { Contato } from '../models/contato.model';
+import { ContatoService } from '../services/contato.service';
 
 @Component({
 
     moduleId: module.id,
     selector: 'contato-detalhe',
-    templateUrl: 'contato-detalhe.component.html'
+    templateUrl: '../views/contato-detalhe.component.html'
 })
 export class ContatoDetalheComponent implements OnInit{
 

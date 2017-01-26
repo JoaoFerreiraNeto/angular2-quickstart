@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 
-import { Contato } from './contato.model';
-import { CONTATOS } from './contatos.mock';
+import { Contato } from '../models/contato.model';
+import { CONTATOS } from '../mocks/contatos.mock';
 
 @Injectable()
 export class ContatoService {

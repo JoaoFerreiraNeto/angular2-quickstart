@@ -11,8 +11,8 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require("@angular/core");
 var router_1 = require("@angular/router");
 var common_1 = require("@angular/common");
-var contato_model_1 = require("./contato.model");
-var contato_service_1 = require("./contato.service");
+var contato_model_1 = require("../models/contato.model");
+var contato_service_1 = require("../services/contato.service");
 var ContatoDetalheComponent = (function () {
     function ContatoDetalheComponent(contatoService, route, location) {
         this.contatoService = contatoService;
@@ -42,7 +42,7 @@ ContatoDetalheComponent = __decorate([
     core_1.Component({
         moduleId: module.id,
         selector: 'contato-detalhe',
-        templateUrl: 'contato-detalhe.component.html'
+        templateUrl: '../views/contato-detalhe.component.html'
     }),
     __metadata("design:paramtypes", [contato_service_1.ContatoService,
         router_1.ActivatedRoute,

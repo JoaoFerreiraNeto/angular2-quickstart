@@ -7,8 +7,8 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 var core_1 = require("@angular/core");
 var platform_browser_1 = require("@angular/platform-browser");
-var app_component_1 = require("./app.component");
-var app_routing_module_1 = require("./app-routing.module");
+var app_component_1 = require("./home/components/app.component");
+var app_routing_module_1 = require("./configurations/app-routing.module");
 var contatos_module_1 = require("./contatos/contatos.module");
 var AppModule = (function () {
     function AppModule() {

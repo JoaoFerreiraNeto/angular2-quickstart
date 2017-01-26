@@ -9,7 +9,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require("@angular/core");
-var contato_service_1 = require("./contato.service");
+var contato_service_1 = require("../services/contato.service");
 var ContatosListaComponent = (function () {
     function ContatosListaComponent(contatoService) {
         this.contatoService = contatoService;
@@ -27,7 +27,7 @@ ContatosListaComponent = __decorate([
     core_1.Component({
         moduleId: module.id,
         selector: 'contatos-lista',
-        templateUrl: 'contatos-lista.component.html'
+        templateUrl: '../views/contatos-lista.component.html'
     }),
     __metadata("design:paramtypes", [contato_service_1.ContatoService])
 ], ContatosListaComponent);

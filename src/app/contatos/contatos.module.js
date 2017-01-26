@@ -8,10 +8,10 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var core_1 = require("@angular/core");
 var common_1 = require("@angular/common");
 var forms_1 = require("@angular/forms");
-var contato_detalhe_component_1 = require("./contato-detalhe.component");
-var contatos_lista_component_1 = require("./contatos-lista.component");
-var contato_routing_module_1 = require("./contato-routing.module");
-var contato_service_1 = require("./contato.service");
+var contato_detalhe_component_1 = require("./components/contato-detalhe.component");
+var contatos_lista_component_1 = require("./components/contatos-lista.component");
+var contato_routing_module_1 = require("./routers/contato-routing.module");
+var contato_service_1 = require("./services/contato.service");
 var ContatosModule = (function () {
     function ContatosModule() {
     }
