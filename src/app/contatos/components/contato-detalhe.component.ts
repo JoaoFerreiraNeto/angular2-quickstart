@@ -14,6 +14,7 @@ import { ContatoService } from '../services/contato.service';
 export class ContatoDetalheComponent implements OnInit{
 
     contato: Contato;
+    private isNew: boolean = true;
 
     constructor(
         private contatoService: ContatoService,
@@ -29,6 +30,9 @@ export class ContatoDetalheComponent implements OnInit{
             let id: number = +params['id'];
 
             if(id) {
+
+                this.isNew =false;
+
                 this.contatoService.getContato(id)
                     .then((contato: Contato) => {
                         this.contato = contato;
@@ -36,8 +40,33 @@ export class ContatoDetalheComponent implements OnInit{
             }
         });
     }
-    teste():void{
-        console.log();
+
+    getFormGroupClass(isValid: boolean, isPristine: boolean): {} {
+        return{
+            'form-group': true,
+            'has-danger': !isValid && !isPristine,
+            'has-success': isValid && !isPristine,
+        };
+    }
+
+      getFormControlClass(isValid: boolean, isPristine: boolean): {} {
+        return{
+            'form-control': true,
+            'form-control-danger': !isValid && !isPristine,
+            'form-control-success': isValid && !isPristine,
+        };
+    }
+
+    onSubmit(): void {
+        let promise;
+
+        if (this.isNew){
+            promise = this.contatoService.create(this.contato);
+        }else{
+            promise = this.contatoService.update(this.contato);
+        }
+
+        promise.then(contato => this.location.back());
     }
 
 }

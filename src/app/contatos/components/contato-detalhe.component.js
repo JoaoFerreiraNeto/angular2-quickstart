@@ -18,6 +18,7 @@ var ContatoDetalheComponent = (function () {
         this.contatoService = contatoService;
         this.route = route;
         this.location = location;
+        this.isNew = true;
     }
     ContatoDetalheComponent.prototype.ngOnInit = function () {
         var _this = this;
@@ -26,6 +27,7 @@ var ContatoDetalheComponent = (function () {
         this.route.params.forEach(function (params) {
             var id = +params['id'];
             if (id) {
+                _this.isNew = false;
                 _this.contatoService.getContato(id)
                     .then(function (contato) {
                     _this.contato = contato;
@@ -33,8 +35,30 @@ var ContatoDetalheComponent = (function () {
             }
         });
     };
-    ContatoDetalheComponent.prototype.teste = function () {
-        console.log();
+    ContatoDetalheComponent.prototype.getFormGroupClass = function (isValid, isPristine) {
+        return {
+            'form-group': true,
+            'has-danger': !isValid && !isPristine,
+            'has-success': isValid && !isPristine,
+        };
+    };
+    ContatoDetalheComponent.prototype.getFormControlClass = function (isValid, isPristine) {
+        return {
+            'form-control': true,
+            'form-control-danger': !isValid && !isPristine,
+            'form-control-success': isValid && !isPristine,
+        };
+    };
+    ContatoDetalheComponent.prototype.onSubmit = function () {
+        var _this = this;
+        var promise;
+        if (this.isNew) {
+            promise = this.contatoService.create(this.contato);
+        }
+        else {
+            promise = this.contatoService.update(this.contato);
+        }
+        promise.then(function (contato) { return _this.location.back(); });
     };
     return ContatoDetalheComponent;
 }());
