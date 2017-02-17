@@ -15,6 +15,7 @@ var ContatosListaComponent = (function () {
     function ContatosListaComponent(contatoService, dialogService) {
         this.contatoService = contatoService;
         this.dialogService = dialogService;
+        this.contatos = [];
     }
     ContatosListaComponent.prototype.ngOnInit = function () {
         var _this = this;
@@ -22,7 +23,11 @@ var ContatosListaComponent = (function () {
             .then(function (contatos) {
             _this.contatos = contatos;
         }).catch(function (err) {
-            console.log('Aconteceu um erro: ', err);
+            console.log(err);
+            _this.mostrarMensagem({
+                tipo: 'danger',
+                texto: 'Ocorreu um erro ao buscas a lista de contatos.'
+            });
         });
     };
     ContatosListaComponent.prototype.onDelete = function (contato) {
@@ -34,11 +39,46 @@ var ContatosListaComponent = (function () {
                     .delete(contato)
                     .then(function (conatto) {
                     _this.contatos = _this.contatos.filter(function (c) { return c.id != contato.id; });
+                    _this.mostrarMensagem({
+                        tipo: 'success',
+                        texto: 'Contato deletado!'
+                    });
                 }).catch(function (err) {
                     console.log(err);
+                    _this.mostrarMensagem({
+                        tipo: 'danger',
+                        texto: 'Ocorreu um erro ao deletar o contato'
+                    });
                 });
             }
         });
+    };
+    ContatosListaComponent.prototype.mostrarMensagem = function (mensagem) {
+        var _this = this;
+        this.mensagem = mensagem;
+        this.montarClasses(mensagem.tipo);
+        if (mensagem.tipo != 'danger') {
+            if (this.currentTimeout) {
+                clearTimeout(this.currentTimeout);
+            }
+            this.currentTimeout = setTimeout(function () {
+                _this.mensagem = undefined;
+            }, 3000);
+        }
+    };
+    ContatosListaComponent.prototype.montarClasses = function (tipo) {
+        this.classesCss = {
+            'alert': true
+        };
+        this.classesCss['alert-' + tipo] = true;
+        /*
+        {
+            'alert': true,
+            'alert-success': true,
+            'alert-danger': false,
+            ...
+        }
+        */
     };
     return ContatosListaComponent;
 }());
