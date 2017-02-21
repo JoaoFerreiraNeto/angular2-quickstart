@@ -21,10 +21,13 @@ var ContatoBuscaComponent = (function () {
         var _this = this;
         this.contatos = this.termosDaBusca
             .debounceTime(500) // Aguaradar por 300ms para emitir novos eventos
-            .distinctUntilChanged() //Ignore se o proximo termo de busca for iguala o anterior 
+            .distinctUntilChanged() //ignore se o próximo termo de busca for igual ao anterior
             .switchMap(function (term) {
             console.log('Fez a busca: ', term);
             return term ? _this.contatoService.search(term) : Observable_1.Observable.of([]);
+        }).catch(function (err) {
+            console.log(err);
+            return Observable_1.Observable.of([]);
         });
         this.contatos.subscribe(function (contatos) {
             console.log('retornou do servidor: ', contatos);
